@@ -161,25 +161,24 @@ isPalindrome('A man a plan a canal Panama');     // true
 
 
 function isBalanced(str) {
- var arrPrev = [];
- var arrLast = [];
+ var count = 0;
  for (var i = 0; i < str.length; i++) {
-   if (str[i] === '{') {
-     arrPrev.push(i);
-   }
    if (str[i] === '}') {
-     arrLast.push(i);
+     count -= 1;
    }
- }
-   if (arrPrev.length === arrLast.length) {
-     if (arrPrev[arrPrev.length - 1] < arrLast[arrLast.length - 1]) {
-       return true;
+   else {  if (str[i] === '{') {
+     count += 1;
      }
    }
-   else {
+   if (count < 0) {
      return false;
    }
- return false;
+ }
+
+ if (count > 0) {
+   return false;
+ }
+ return true;
 }
 
 // isBalanced - Takes a string and returns true or false indicating whether its curly braces are balanced.
