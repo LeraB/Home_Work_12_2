@@ -24,16 +24,20 @@ isPrime(10000000000000);             // false
 
 
 function factorial(num) {
-    var prev = 1,
-        f;
+  var prev = 1,
+      f;
+  if (num > 0) {
     if (num == 0) {
-        f = 1;
+      f = 1;
     }
     for (i = 1; i <= num; i++) {
-        f = i * prev;
-        prev = f;
+      f = i * prev;
+      prev = f;
     }
-
+  }
+  else {
+    return "Enter a positive number!";
+  }
     return f;
 }
 
