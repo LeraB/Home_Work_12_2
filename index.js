@@ -157,3 +157,38 @@ isPalindrome('');                                // true
 isPalindrome('abcdcba');                         // true
 isPalindrome('abcd');                            // false
 isPalindrome('A man a plan a canal Panama');     // true
+
+
+
+function isBalanced(str) {
+ var arrPrev = [];
+ var arrLast = [];
+ for (var i = 0; i < str.length; i++) {
+   if (str[i] === '{') {
+     arrPrev.push(i);
+     console.log("arrPrev = ", arrPrev);
+   }
+   if (str[i] === '}') {
+     arrLast.push(i);
+     console.log("arrLast = ", arrLast);
+   }
+ }
+ console.log("arrPrev.length = ", arrPrev.length, "arrLast.length = ", arrLast.length);
+   if (arrPrev.length === arrLast.length) {
+     if (arrPrev[arrPrev.length - 1] < arrLast[arrLast.length - 1]) {
+       return true;
+     }
+   }
+   else {
+     return false;
+   }
+ return false;
+}
+
+// isBalanced - Takes a string and returns true or false indicating whether its curly braces are balanced.
+isBalanced('}{')                      // false
+isBalanced('{{}')                     // false
+isBalanced('{}{}')                    // true
+isBalanced('foo { bar { baz } boo }') // true
+isBalanced('foo { bar { baz }')       // false
+isBalanced('foo { bar } }')           // false
