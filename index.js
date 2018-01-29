@@ -24,20 +24,20 @@ isPrime(10000000000000);             // false
 
 
 function factorial(num) {
-  var prev = 1,
-      f;
-  if (num > 0) {
-    if (num == 0) {
-      f = 1;
+    var prev = 1,
+        f;
+    if (num > 0) {
+        if (num == 0) {
+            f = 1;
+        }
+        for (var i = 1; i <= num; i++) {
+            f = i * prev;
+            prev = f;
+        }
+    } else {
+        return "Enter a positive number!";
     }
-    for (i = 1; i <= num; i++) {
-      f = i * prev;
-      prev = f;
-    }
-  }
-  else {
-    return "Enter a positive number!";
-  }
+
     return f;
 }
 
@@ -53,7 +53,7 @@ function fib(num) {
     if (num == 0) {
         return 0;
     }
-    for (i = 1; i < num; i++) {
+    for (var i = 1; i < num; i++) {
         f = prelast + last;
         prelast = last;
         console.log('prelast =' + prelast);
@@ -73,11 +73,12 @@ fib(10);                             // 55
 fib(20);                             // 6765
 
 function reverse(str) {
-    var result = str.split(""),
+    var result = str.split(''),
         strNew = '';
-    for (i = result.length - 1; i >= 0; i--) {
+    for (var i = result.length - 1; i >= 0; i--) {
         strNew += result[i]
     }
+
     return strNew;
 }
 // reverse - Reverses the given string (yes, using the built in reverse function is cheating).
@@ -86,12 +87,13 @@ reverse('abcdef');               // 'fedcba'
 
 
 function missing(arr) {
-    var result = [], el,
+    var result = [],
+        el,
         len = arr.length - 1;
     arr.sort();
     for (var i = 1; i <= arr[len]; i++) {
         el = arr.includes(i);
-        if (el === false) {
+        if (!el) {
             result.push(i);
         }
 
@@ -141,13 +143,12 @@ isSorted([3, 9, -3, 10]);            // false
 
 
 function isPalindrome(str) {
-    var strLen = str.length,
-        result = true,
-        lowerStr = str.toLowerCase();
-    for (var i = 0; i < strLen; i++) {
-        if (lowerStr[i] !== lowerStr[strLen - 1 - i]) {
-            result = false;
-        }
+    var result = false;
+        removeChar = str.replace(/[^A-Z0-9]/ig, "").toLowerCase(),
+        checkPalindrome = removeChar.split('').reverse().join('');
+    
+    if (removeChar === checkPalindrome) {
+        result = true;
     }
     return result;
 }
@@ -159,26 +160,26 @@ isPalindrome('abcd');                            // false
 isPalindrome('A man a plan a canal Panama');     // true
 
 
-
 function isBalanced(str) {
- var count = 0;
- for (var i = 0; i < str.length; i++) {
-   if (str[i] === '}') {
-     count -= 1;
-   }
-   else {  if (str[i] === '{') {
-     count += 1;
-     }
-   }
-   if (count < 0) {
-     return false;
-   }
- }
+    var count = 0;
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] === '}') {
+            count -= 1;
+        } else {
+            if (str[i] === '{') {
+                count += 1;
+            }
+        }
+        if (count < 0) {
+            return false;
+        }
+    }
 
- if (count > 0) {
-   return false;
- }
- return true;
+    if (count > 0) {
+        return false;
+    }
+
+    return true;
 }
 
 // isBalanced - Takes a string and returns true or false indicating whether its curly braces are balanced.
